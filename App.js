@@ -20,7 +20,7 @@ const createFormData = (photo, body = {}) => {
     data.append(key, body[key]);
   });
 
-  // console.log(data);
+  // console.log("Data------->",data);
 
   return data;
 };
@@ -41,7 +41,7 @@ const App = () => {
     axios.post(`${SERVER_URL}/api/upload`, {
       body: createFormData(photo, { userId: '123' }),
     })
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((response) => {
         console.log("upload succes", response);
         alert("Upload success!");
@@ -58,7 +58,7 @@ const App = () => {
       {photo && (
         <>
           <Image
-            source={{ uri: photo.uri }}
+            source={{ uri: photo.assets[0].uri }}
             style={{ width: 300, height: 300 }}
           />
           <Button title="Upload Photo" onPress={handleUploadPhoto} />
